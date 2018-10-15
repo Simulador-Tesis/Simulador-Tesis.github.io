@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--Links de las fuentes usadas-->
+		<link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Gilda+Display|Roboto" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Quando" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+		<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="Sources/css/bootstrap.min.css">
+    <script src="Sources/js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="Sources/js/Bootstrap/bootstrap.min.js"></script>
+        
+        <script type="text/javascript" src="Sources/js/Propios/Dibujado.js"></script>
+        <script type="text/javascript" src="Sources/js/Propios/Teoria_De_Juegos.js"></script>
+    	  <script type="text/javascript" src="Sources/js/Propios/Opciones_Reales.js"></script>
+
+
+		<link href="Sources/css/style.css" rel="stylesheet">
+
+    <!--Scripts para el sidebar-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="Sources/css/w3/w3.css">
+
+    <!--Iconos-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,700">
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.8.10/go-debug.js"></script>
+		<!--NERDAMER-->
+        <script src="Sources/js/NerdamerJS/nerdamer.core.js"></script>
+        <script src="Sources/js/NerdamerJS/Algebra.js"></script>
+        <script src="Sources/js/NerdamerJS/Calculus.js"></script>
+        <script src="Sources/js/NerdamerJS/Solve.js"></script>
+        <script src="Sources/js/NerdamerJS/Extra.js"></script>
+        <!--Helpers-->
+        <script src="Sources/js/Helpers/HMixtas.js"></script>
+        <!--myChart-->
+        <script src="Sources/js/MyChart/svgElements.js"></script>
+        <script src="Sources/js/Propios/Player.js"></script>
+        <script src="Sources/js/MyChart/myChart.js"></script>
+        <!--XLSExport---->
+		<script src="Sources/js/Propios/exportExcel.js"></script>
+		<!--Main-->
+        <script src="Sources/js/Propios/TEMixtas2.js"></script>
+        <script type="text/javascript" src="Sources/js/Propios/main.js"></script>
+        <!---->
+
+
+
+
+
+
+		<div class="page-header container">
+			<h1><strong id="Titulo">Daniel Mu&ntildeoz Ramos</strong><small> MBA</small></h1>
+        </div>
+
+        <div class="pull-right help">
+            <button type="button" class="btn btn-ayuda" data-toggle="modal" data-target="#Diccionario">
+                <i class="fa fa-question"></i>
+            </button>
+        </div>
+    </head>
+    <!--           -->
+  <body>
+
+      <div class="modal fade" id="Diccionario" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content 2">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div align="center"><img src="Sources/Imagenes/Logo.png" width="80" ></div>
+              </div>
+              <div class="modal-body"> 
+                <p>Datos Generales:</p>
+                 <table class="table table-borderless">
+                    <tr>
+                      <td>Precio activo</td> <td><i class="glyphicon glyphicon-usd"></i></td> <td>Valor del activo.</td>
+                    </tr>
+                    <tr>
+                      <td>Precio del ejercicio</td> <td><i class="fa fa-handshake-o"></i></td> <td>Precio al que se puede comprar el activo subyacente al momento del vencimiento de opción.</td>
+                    </tr>
+                    <tr>
+                      <td>Periodos</td> <td><i class="fa fa-calendar"></i></td> <td>Número de períodos considerados en el modelo binomial.</td>
+                    </tr>
+                    <tr>
+                      <td>Volatilidad</td> <td><i class="fa fa-bar-chart" ></i></td> <td>Volatilidad anual prevista del activo subyacente.</td>
+                    </tr>
+                    <tr>
+                      <td>Tasa sin riesgo</td> <td><i class="fa fa-percent"></i></td> <td>Inversion sin riesgo.</td>
+                    </tr>
+                    <tr>
+                      <td>Tiempo</td> <td><i class="fa fa-clock-o"></i></td> <td>Plazo en años de la opción o fecha de vencimiento de la opción.</td>
+                    </tr>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secundario" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="container-fluid">
+        <section id="fancyTabWidget" class="tabs t-tabs">
+          <ul class="nav nav-tabs fancyTabs" role="tablist">
+          
+                      <li class="tab fancyTab active">
+                      <div class="arrow-down"><div class="arrow-down-inner"></div></div>  
+                          <a id="tab0" href="#tabBody0" role="tab" aria-controls="tabBody0" aria-selected="true" data-toggle="tab" tabindex="0" >
+                            <span class="hidden-xs">Opciones Reales</span></a>
+                        <div class="whiteBlock"></div>
+                      </li>
+                      
+                      <li class="tab fancyTab">
+                      <div class="arrow-down"><div class="arrow-down-inner"></div></div>
+                          <a id="tab1" href="#tabBody1" role="tab" aria-controls="tabBody1" aria-selected="true" data-toggle="tab" tabindex="0">
+                           <span class="hidden-xs">Estrategias Puras</span></a>
+                          <div class="whiteBlock"></div>
+                      </li>
+					  
+					  <li class="tab fancyTab">
+                      <div class="arrow-down"><div class="arrow-down-inner"></div></div>
+                          <a id="tab2" href="#tabBody2" role="tab" aria-controls="tabBody1" aria-selected="true" data-toggle="tab" tabindex="0">
+                           <span class="hidden-xs">Estrategias Mixtas</span></a>
+                          <div class="whiteBlock"></div>
+                      </li>
+          </ul>
+          <div id="myTabContent" class="tab-content fancyTabContent" aria-live="polite" >
+
+            <div class="tab-pane  fade active in" id="tabBody0" role="tabpanel" aria-labelledby="tab0" aria-hidden="false" tabindex="0" style="outline:0">
+              <div> 
+            		<div class="panel panel-default" >
+              			 <div class="panel-heading">Opciones Reales 
+              			 	<div class="pull-right">
+              			 			<button class="btn btn-default btnCollapse" data-toggle="collapse" data-target="#PanelTable1" style="padding: 2px;">
+                 						<img src="Sources/Imagenes/Logo.png" width="20">
+            						</button>
+              			 	</div>
+              			 </div>
+              		<div id="PanelTable1">
+              			 <table class="table"> <!--Esto es para que colapse<table class="table" id="demo">-->
+              			 	<tr>
+              			 		<td>
+              			 			<div class="input-group-addon">
+                               			<span class="input-group-addon 2">
+                                            <label for="precio_activo">Precio del Activo</label>
+                                      <i class="glyphicon glyphicon-usd"></i>
+                                    	</span>
+                               <input type="text" class="form-control numero"  aria-describedby="sizing-addon1" name="precio_activo" id="precio_activo"/>
+                          </div>
+                                        
+              			 		</td>
+              			 		<td>
+              			 			<div class="input-group-addon">
+                               			<span class="input-group-addon 2">
+                                            <label for="precio_ejercicio">Precio del Ejercicio</label>
+                                          <i class="fa fa-handshake-o"></i>
+                                    	</span>
+
+              			 				<input type="text" class="form-control numero" aria-describedby="sizing-addon1" name="precio_ejercicio" id="precio_ejercicio"> 
+
+              			 			</div>
+              			 		</td>
+              			 		<td>
+              			 			<div class="input-group-addon">
+                               			<span class="input-group-addon 2">
+                                        	<label for="periodos">Periodos</label>
+                                          <i  class="fa fa-calendar"></i>
+                                    	</span>
+              			 		<input type="text" class="form-control numero"  aria-describedby="sizing-addon1" name="Periodos" id="periodos"/>
+                                      
+              			 			</div>
+              			 		</td>
+              			 	</tr>
+              			 	<tr>
+              			 		<td>
+              			 			<div class="input-group-addon">
+                               			<span class="input-group-addon 2">
+                                        	<label for="volatilidad">Volatilidad</label>
+                                          <i class="fa fa-bar-chart" style="color: white;"></i>
+                                    </span>
+              			 		<!--		<input type="text" class="form-control numero" aria-describedby="sizing-addon1" name="volatilidad" id="volatilidad"> -->
+                                    <div class="col-lg-12 PaddingInputPanel1">
+                                    <div class="input-group" >
+                                        <div class="input-group-btn InputPanel1 options">
+                                          <button type="button" class="btn btn-default dropdown-toggle ButtonInputPanel1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              <label>Porcentaje</label> <span class="caret"></span>
+                                          </button>
+                                          <ul class="dropdown-menu">
+                                            <li><a name="Porcentaje">Porcentaje</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a name="Valor">Valor</a></li>
+                                          </ul>
+                                        </div>
+                                        <input type="text" class="form-control numero" aria-describedby="sizing-addon1" name="Volatilidad" id="volatilidad"/>
+                                    </div>
+                                    </div>
+              			 			</div>	
+              			 		</td>
+              			 		<td>
+              			 			<div class="input-group-addon">
+                               			<span class="input-group-addon 2">
+                                            <label for="tasa_sin_riesgo">Tasa sin riesgo</label>
+                                          <i class="fa fa-percent"></i>
+                                    	</span>
+              			 			<!--	<input type="text" class="form-control numero" aria-describedby="sizing-addon1" name="tasa_sin_riesgo" id="tasa_sin_riesgo"> -->
+                                      <div class="col-lg-12 PaddingInputPanel1">
+                                      <div class="input-group" >
+                                        <div class="input-group-btn InputPanel1 options">
+                                          <button type="button" class="btn btn-default dropdown-toggle ButtonInputPanel1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              <label>Porcentaje</label> <span class="caret"></span>
+                                          </button>
+                                          <ul class="dropdown-menu">
+                                            <li><a name="Porcentaje">Porcentaje</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a name="Valor">Valor</a></li>
+                                          </ul>
+                                        </div>
+                                        <input type="text" class="form-control numero" aria-describedby="sizing-addon1" name="Tasa sin riesgo" id="tasa_sin_riesgo">
+                                      </div>
+                                      </div>
+              			 			</div>
+              			 		</td>
+              			 		<td>
+              			 			<div class="input-group-addon">
+                               			<span class="input-group-addon 2">
+                                        	<label for="tiempo">Tiempo</label>
+                                          <i class="fa fa-clock-o"></i>
+                                    	</span>
+              			 		<!--		<input type="text" class="form-control numero" aria-describedby="sizing-addon1" name="tiempo" id="tiempo"/> -->
+                                      <div class="col-lg-12 PaddingInputPanel1">
+                                      <div class="input-group" >
+                                        <div class="input-group-btn InputPanel1 options">
+                                          <button type="button" class="btn btn-default dropdown-toggle ButtonInputPanel1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              <label>Años</label> <span class="caret"></span>
+                                          </button>
+                                          <ul class="dropdown-menu">
+                                              <li><a name="Dias">Dias</a></li>
+                                              <li role="separator" class="divider"></li>
+                                              <li><a name="Semanas">Semanas</a></li>
+                                              <li role="separator" class="divider"></li>
+                                              <li><a name="Meses">Meses</a></li>
+                                              <li role="separator" class="divider"></li>
+                                              <li><a name="Años">Años</a></li>
+                                          </ul>
+                                        </div>
+                                        <input type="text" class="form-control numero"  aria-describedby="sizing-addon1" name="Tiempo" id="tiempo"/>
+                                      </div> 
+                                    </div>
+              			 			</div>
+              			 		</td>
+              			 	</tr>
+              			 	<tr>
+              			 		<td>
+                          <div class="input-group-addon" id="btnAlza">
+                                    <span class="input-group-addon 2">
+                                          <label for="AlzaPanel1">Alza</label>
+                                          <i class="glyphicon glyphicon-triangle-bottom"></i>
+                                      </span>
+                                      <input type="text" class="form-control numero" aria-describedby="sizing-addon1" name="Alza" id="AlzaPanel1"/>
+                          </div>     
+                        </td>
+              			 		<td>
+                         <div class="input-group-addon" id="btnBaja">
+                                    <span class="input-group-addon 2">
+                                          <label for="BajaPanel1">Baja</label>
+                                          <i class="glyphicon glyphicon-triangle-bottom"></i>
+                                      </span>
+                                      <input type="text" class="form-control numero" aria-describedby="sizing-addon1" name="Baja" id="BajaPanel1"/>
+                          </div>
+                        </td>
+              			 		<td>
+                        <div class="col-lg-12">
+              			 			<div class="pull-right"> 
+            	  			 			<div class="btn-group paddinggroupPanel1" id="GroupButtonPanel1">
+            	                            <button type="button"  class="listo btn btn-primario" >Calcular</button>
+            	                            <button type="button"  class="limpiar btn btn-secundario">Borrar todo</button>
+            	              </div>
+                          </div>
+                        </div>
+                           		</td>
+              			 	</tr>
+            			</table>
+            		</div>
+            		</div>
+                <div class="pull-right">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <label for="nDecResult">Cantidad de Decimales para los Resultados: </label>
+                                <input id="nDecResult" type="number" value="2" min="0" max="3"  name="Cantidad de Decimales"/>
+                            </td>
+                            <td>
+                                <label for="nDecTree">Cantidad de Decimales para los Arboles: </label>
+                                <input id="nDecTree" type="number" value="0" min="0" max="3"  name="Cantidad de Decimales"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            		<!--Fin del primer panel-->
+                <br>
+            		<br>
+            		<!--Inicio del primer panel, se muestran los resultados-->
+            		<!--color #ffd700 dorado, background-color #000000 negro, color del logo #cbab73-->
+            		<div class="panel panel-default">
+              			 <div class="panel-heading">
+                             Resultados
+              			 	<div class="pull-right">
+              			 			<button class="btn btn-default btnCollapse" data-toggle="collapse" data-target="#PanelTable2" style="padding: 2px;">
+                 						<img src="Sources/Imagenes/Logo.png" width="20">
+            						</button>
+              			 	</div>
+              			 </div>
+              			 <div id="PanelTable2">
+            	  			 <table class="table">
+            					<tr>
+            						<td>Alza</td>
+            						<td><label id="alza" /></td>
+            						<td>Baja</td>
+            						<td><label id="baja" /></td>
+            					</tr>
+            					<tr>
+            						<td>Probabilidad de la Alza</td>
+            						<td><label id="pro_u" /></td>
+            						<td>Probabilidad de la Baja</td>
+            						<td><label id="pro_d" /></td>
+            					</tr>
+                      <tr>
+                        <td>Precio del valor de venta</td>
+                        <td><label id="precioCall" /></td>
+                        <td>Valor de la opcion de venta</td>
+                        <td><label id="vov" /></td>
+                      </tr>			
+            				</table>
+            			</div>
+            		</div>
+				<div class=pull-left>
+					<div class="btn-group visualizar">
+						<button class="ImportarExcel btn btn-secundario " >Exportar un excel</button>
+					</div>
+				</div>
+                <div class="pull-right">
+              		<div class="btn-group visualizar">
+					  <button class="btn btn-primario Arboles" id="MostrarArbol1" >Ver Arbol 1</button>
+              		  <button class="btn btn-secundario Arboles" id="MostrarArbol2" >Ver Arbol 2</button>
+              		</div>
+                </div>
+            	<!-- Modal Arbol 1 -->
+            	<div class="modal fade" id="VArbol1" role="dialog">
+            		<div class="modal-dialog">
+            		
+            		<div class="modal-content">
+            		<div class="modal-header">
+                      <button type="button" class="close btn"  data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Arbol 1</h4>
+                    </div>
+                    <div class="modal-body">
+                      <table class="table table-borderless" id=Arboles>
+            		  <tr>
+            			
+            		  </tr>
+            		</table>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secundario close" data-dismiss="modal">Cerrar</button>
+                    </div>
+            		</div>
+            		</div>
+            	</div>
+            	<!-- Modal Arbol 2 -->
+            	<div class="modal fade" id="VArbol2" role="dialog">
+            		<div class="modal-dialog">
+            		
+            		<div class="modal-content">
+            		<div class="modal-header">
+                      <button type="button" class="close btn" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Arbol 2</h4>
+                    </div>
+                    <div class="modal-body">
+                      <table class="table table-borderless" id="Arbol2">
+                  <tr>
+                    
+                  </tr>
+                </table>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secundario close" data-dismiss="modal">Close</button>
+                    </div>
+            		</div>
+            		</div>
+            	</div>
+              </div>
+              <br>
+            	<!--<canvas id="myCanvas" width="1500" height="800" style="border:1px solid #d3d3d3;">
+            		Your browser does not support the HTML5 canvas tag.</canvas>-->
+              <br>
+              <div class="panel panel-default" style="margin-bottom: 20px">
+                     <div class="panel-heading"><span id="nameArbol">Árboles</span>  
+                      <div class="pull-right">
+                          <button class="btn btn-default btnCollapse" data-toggle="collapse" data-target="#PanelArbol" style="padding: 2px;">
+                            <img src="Sources/Imagenes/Logo.png" width="20">
+                        </button>
+                      </div>
+                     </div>
+                  <div id="PanelArbol" class="collapse" style="height: 0px;">  
+                  <div>
+                    <iframe id="frame" src="" width="100%" height="1000" style="margin-top: 5px; border: transparent"></iframe>
+                  </div>
+                  </div>
+            </div>
+            </div>
+            <div class="tab-pane  fade" id="tabBody1" role="tabpanel" aria-labelledby="tab1" aria-hidden="true" tabindex="0" style="outline:0">
+              <div class="panel panel-default" style="margin-bottom: 10px;">
+              <div class="panel-heading">
+                             Jugadores
+                      <div class="pull-right">
+                          <button class="btn btn-default btnCollapse" data-toggle="collapse" data-target="#PanelTableJugar" style="padding: 2px;">
+                            <img src="Sources/Imagenes/Logo.png" width="20">
+                        </button>
+                      </div>
+                     </div>
+                     <div id="PanelTableJugar">
+              <div>
+                <div class="row" style=" margin-left: 0px; margin-right: 0px;">
+                  <div class="column column1" >
+                    <h2 class="Titulo-column1">Jugador 1</h2>
+                    <ul class="list-group">
+                      <li class="list-group-item"> 
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="input-group">
+                              <div class="input-group-btn options">
+                                <button type="button" class="btn btn-default dropdown-toggle Tab2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <label>Porcentaje</label> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a name="Valor">Valor</a></li>
+                                  <li role="separator" class="divider"></li>
+                                  <li><a name="Porcentaje">Porcentaje</a></li>
+                                </ul>
+                              </div>
+                              <input type="text" class="form-control numero" id="NPV1" placeholder="Valor neto actualmente de la empresa en el mercado.">
+                            </div>
+                          </div>
+                        </div>
+                      </li>  
+                     </ul> 
+                  </div>
+                  <div class="column column2">
+                    <h2 class="Titulo-column2">Jugador 2</h2>
+                    <ul class="list-group" >
+                      <li class="list-group-item"> 
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="input-group">
+                              <div class="input-group-btn options">
+                                <button type="button" class="btn btn-default dropdown-toggle Tab2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <label>Porcentaje</label> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a name="Valor">Valor</a></li>
+                                  <li role="separator" class="divider"></li>
+                                  <li><a name="Porcentaje">Porcentaje</a></li>
+                                </ul>
+                              </div>
+                              <input type="text" class="form-control numero" id="NPV2" placeholder="Valor neto actualmente de la empresa en el mercado.">
+                            </div>
+                          </div>
+                        </div>
+                      </li>  
+                     </ul>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div> 
+                  <div class="pull-right ">
+                    <button type="button"  class="btn btn-secundario Teoria" id="IniciarJuego">Iniciar Juego</button>
+                  </div>
+                  <br>
+                  <br>
+
+				          <div class="panel panel-default" style="margin-bottom: 10px;">
+              			 <div class="panel-heading">
+                             Resultados
+              			 	<div class="pull-right">
+              			 			<button class="btn btn-default btnCollapse" data-toggle="collapse" data-target="#PanelTableResultadoTJ" style="padding: 2px;">
+                 						<img src="Sources/Imagenes/Logo.png" width="20">
+            						</button>
+              			 	</div>
+              			 </div>
+              			 <div id="PanelTableResultadoTJ">
+            	  			 <table class="table">
+            					<tr>
+            						<td>Opción Call Jugador 1</td>
+            						<td><label id="call_1" /></td>
+            						<td>Opción Call Jugador 2</td>
+            						<td><label id="call_2" /></td>
+            					</tr>
+            								
+            				</table>
+            			</div>
+                  </div>
+                  <div class="pull-right"> 
+                            <div class="btn-group " id="GroupButtonPanel2">
+                                          <button type="button"  class="btn btn-primario jugadores" id="Jugador1">Jugador 1</button>
+                                          <button type="button"  class="btn btn-secundario jugadores" id="Jugador2">Jugador 2</button>
+                            </div>
+                  </div>
+                  <br>
+				  <br>
+                      <!--<iframe id="iframeGetBalancePoint" src="" width="100%" height="1000" style="margin-top: 5px; border: transparent"></iframe>-->
+                  <div class="panel panel-default" style="margin-bottom: 10px;">
+                     <div class="panel-heading">
+                             Arbol
+                      <div class="pull-right">
+                          <button class="btn btn-default btnCollapse" data-toggle="collapse" data-target="#PanelTableArbolTJ" style="padding: 2px;">
+                            <img src="Sources/Imagenes/Logo.png" width="20">
+                        </button>
+                      </div>
+                     </div>
+                     <div id="PanelTableArbolTJ">   
+                        <div id="ver-arbol"></div>
+                    </div>
+            </div>
+              </div>
+              <br>
+              <br>
+			 <div class="tab-pane  fade" id="tabBody2" role="tabpanel" aria-labelledby="tab1" aria-hidden="true" tabindex="0" style="outline:0">
+			<div class="panel panel-default" >
+              			 <div class="panel-heading">Estrategias Mixtas 
+              			 	<div class="pull-right">
+              			 			<button class="btn btn-default btnCollapse" data-toggle="collapse" data-target="#PanelMixtas" style="padding: 2px;">
+                 						<img src="Sources/Imagenes/Logo.png" width="20">
+            						</button>
+              			 	</div>
+              			 </div>
+			<div id="PanelMixtas">
+				<table class="table">
+				  <thead>
+					<tr>
+					  <th scope="col">                       </th>
+					  <th class="th-Estrategias-Mixtas" scope="col" >P</th	>
+					  <th class="th-Estrategias-Mixtas" scope="col">(1-P)</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr>
+						<td class="th-Estrategias-Mixtas" scope="row">Q</td>
+						<td class="column1"><input type="text" class="form-control pe"  aria-describedby="sizing-addon1"/></td>
+						<td class="column1"><input type="text" class="form-control pe"  aria-describedby="sizing-addon1"/></td>
+					</tr>
+					<tr>
+						<td class="th-Estrategias-Mixtas" scope="row" >(1-Q)</td>
+						<td class="column1"><input type="text" class="form-control pe"  aria-describedby="sizing-addon1"/></td>
+						<td class="column1"><input type="text" class="form-control pe"  aria-describedby="sizing-addon1"/></td>
+					</tr>
+					
+				  </tbody>
+				</table>
+			</div>
+			</div>
+			<br/>
+			<div class="pull-right">
+				<button id="sub" class="btn btn-secundario Teoria">Encontrar punto</button>
+			</div>
+			<br/>
+			<div id="dibujado" class="svg-center">
+				<svg height="650", width="650" class="svg-margin" id='abc' >
+					El navegador NO soporta SVG
+        </svg><br>
+        <label id="pqMixtas"></label>
+			</div>	
+			</div>
+               
+            </div>
+            <!--</div>-->
+        </section>
+    </div>
+    <label id="pruebasa"></label>
+
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script src="../js/JQuery/jquery-3.3.1.min.js"></script>
+	<!--<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.1/d3.min.js"></script>-->
+	<script src="../js/d3/d3.min.js"></script>
+
+	<script type="text/javascript" src="../js/Propios/Dibujado.js"></script>
+	<script type="text/javascript" src="../js/Propios/Teoria_De_Juegos.js"></script>
+	<style>
+		circle {
+		  color: black;
+		}
+	</style>
+	<script>
+		/*$(document).ready((e) => {
+			d3.select(".goMixtas").on('click',()=>{
+				var arr = $(this).val().attr("x");
+				console.log(arr);
+			});
+		});*/
+	</script>
+</head>
+<body>
+	<div id="arbol" style="text-align:center; margin-top: 10px">
+	</div>
+
+	<script>
+
+        var mostrar_matriz=JSON.parse(localStorage.getItem("mostrar_matriz"));
+        var ENES = JSON.parse(localStorage.getItem("NPeriodos_NDecimales"));
+        var simbolo=JSON.parse(localStorage.getItem("simbolo"));
+        var matriz=JSON.parse(localStorage.getItem("arbol"));
+
+        var vis=d3.select("#arbol").append("svg").attr("id","fe");
+        var nPeriodos=ENES.nPer;
+		
+		let arbol = new Tree(ENES,simbolo,matriz,vis);
+		arbol.Draw();
+
+    /*codigo para diujar las matrices*/
+    if(mostrar_matriz) {
+        var obj = JSON.parse(localStorage.getItem("ptEquilibrio"));
+        matrixes = new MatrixCollection($("#arbol").children('svg'), obj, nPeriodos,vis);
+        matrixes.DrawAll();
+    }
+	/*FIN: codigo para diujar las matrices*/
+	
+	</script>
+</body>
