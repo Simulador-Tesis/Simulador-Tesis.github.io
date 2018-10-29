@@ -1,4 +1,4 @@
-var Par = string => string.split(",").map(item => parseInt(item));
+var Par = string => string.split(",").map(item => parseFloat(item));
 var solve = (string, For) => nerdamer(string).solveFor(For).toString();
 var diff = (expr, base) => nerdamer.getCore().Calculus.diff(nerdamer(expr).symbol, base).text();
 /**
