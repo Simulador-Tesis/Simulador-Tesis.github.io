@@ -1,5 +1,6 @@
 $(document).ready(()=>{
     $('#sub').click(()=>{
+		$('#dibujado').show();
     var str1 = 'p*(11*q-1)+1-q';
     var str2 = 'q*(2*p-1)+1-p';
 
@@ -23,6 +24,11 @@ $(document).ready(()=>{
 
     var ply1 = new Jugador(newExp1,'p');
     var ply2 = new Jugador(newExp2,'q');
+	
+	//
+	
+	
+	
 
     var svg = document.getElementById('abc');
     var d = new myChart(svg, {steps:10, size: 650, increment: 0.1},
@@ -43,9 +49,29 @@ $(document).ready(()=>{
     console.log(ply1.Dots);
     console.log(ply2.Dots);
 
+
     drawLines(d,ply1.Dots,{stroke:'blue',strokeWidth:6});
     drawLines(d,ply2.Dots,{stroke:'red',strokeWidth:3});
-    $('#pqMixtas').html(`p:${ply1.resFraccion}, q:${ply2.resFraccion}`);
+	
+	//
+    $('#pqMixtasOPuras').html(`Punto de equilibrio mixtas p:${ply1.resFraccion}, q:${ply2.resFraccion}`);
+});
+
+$('#su').click(()=>{
+	$('#dibujado').hide();
+    var arr = [];
+    $('.pe').each((index, element) => {
+        arr.push(Par($(element).val()));
+    });
+
+    var aux = [[[{value:arr[0][0],bool:false},{value:arr[0][1],bool:false}],
+               [{value:arr[1][0],bool:false},{value:arr[1][1],bool:false}],
+               [{value:arr[2][0],bool:false},{value:arr[2][1],bool:false}],
+               [{value:arr[3][0],bool:false},{value:arr[3][1],bool:false}]]];
+    PuntoEquilibrio(aux);
+    var puros = ExtraerPtsEquilibrio(aux);
+
+    $('#pqMixtasOPuras').html(`Punto de equilibrio en puras: ${puros[0].jugador1}, ${puros[0].jugador2}`);
 });
 
 });
